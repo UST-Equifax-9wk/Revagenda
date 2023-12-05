@@ -38,8 +38,8 @@ public class RevagendaApplication {
 		}
 		System.out.println(gNames);
 
-		TestRepository testRepo = iocContainer.getBean(TestRepository.class);
-		testRepo.save(new TestEntity("testValue"));
+		//TestRepository testRepo = iocContainer.getBean(TestRepository.class);
+		//testRepo.save(new TestEntity("testValue"));//can't auto-generate keys
 
 
 

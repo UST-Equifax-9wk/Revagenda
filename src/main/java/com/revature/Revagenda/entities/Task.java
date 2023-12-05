@@ -27,17 +27,19 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer taskId, String title, String description, String due) {
+    public Task(Integer taskId, String title, String description, String due, User user) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.due = due;
+        this.user = user;
     }
 
-    public Task(String title, String description, String due) {
+    public Task(String title, String description, String due, User user) {
         this.title = title;
         this.description = description;
         this.due = due;
+        this.user = user;
     }
 
     public Integer getTaskId() {
@@ -72,17 +74,25 @@ public class Task {
         this.due = due;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(taskId, task.taskId) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && Objects.equals(due, task.due);
+        return Objects.equals(taskId, task.taskId) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && Objects.equals(due, task.due) && Objects.equals(user, task.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, title, description, due);
+        return Objects.hash(taskId, title, description, due, user);
     }
 
     @Override
@@ -92,6 +102,7 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", due='" + due + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

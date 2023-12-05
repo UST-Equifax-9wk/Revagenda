@@ -29,12 +29,21 @@ public class User {
     public User() {
     }
 
-    public User(Integer userId, String firstName, String lastName, String username, String password) {
+    public User(Integer userId, String firstName, String lastName, String username, String password, Set<Task> tasks) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.tasks = tasks;
+    }
+
+    public User(String firstName, String lastName, String username, String password, Set<Task> tasks) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.tasks = tasks;
     }
 
     public User(String firstName, String lastName, String username, String password) {
@@ -84,18 +93,25 @@ public class User {
         this.password = password;
     }
 
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(tasks, user.tasks);
     }
-
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, username, password);
+        return Objects.hash(userId, firstName, lastName, username, password, tasks);
     }
 
     @Override
@@ -106,6 +122,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", tasks=" + tasks +
                 '}';
     }
 }
