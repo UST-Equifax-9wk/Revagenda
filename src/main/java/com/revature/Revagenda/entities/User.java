@@ -1,6 +1,8 @@
 package com.revature.Revagenda.entities;
 
 import jakarta.persistence.*;
+
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -100,6 +102,7 @@ public class User {
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
+
 
     @Override
     public boolean equals(Object o) {
