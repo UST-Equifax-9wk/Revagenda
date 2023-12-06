@@ -14,23 +14,23 @@ import java.util.Set;
 @Service
 @Transactional(Transactional.TxType.REQUIRED)
 public class TaskService {
-    private TaskRepository repo;
+    private TaskRepository taskRepository;
 
     /**
-     *
-     * @param repo
+     * Constructor
+     * @param taskRepository - autowired TaskRepository bean dependency
      */
     @Autowired
-    public TaskService(TaskRepository repo) {
-        this.repo = repo;
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
     }
 
     /**
      *
      * @param task
      */
-    public void saveOrUpdate(Task task) {
-        repo.save(task);
+    public Task saveOrUpdate(Task task) {
+        return taskRepository.save(task);
     }
 
     /**
@@ -39,7 +39,7 @@ public class TaskService {
      */
     public void saveOrUpdate(Set<Task> taskSet) {
         for(Task task : taskSet) {
-            repo.save(task);
+            taskRepository.save(task);
         }
     }
 
@@ -49,7 +49,7 @@ public class TaskService {
      * @return
      */
     public Set<Task> findAllTasksForUser(Integer userId) {
-        return repo.findTasksByUserUserId(userId);
+        return taskRepository.findTasksByUserUserId(userId);
     }
 
     /**
@@ -58,7 +58,7 @@ public class TaskService {
      * @return
      */
     public Set<Task> findAllTasksForUser(User user) {
-        return repo.findTasksByUserUserId(user.getUserId());
+        return taskRepository.findTasksByUserUserId(user.getUserId());
     }
 
     /**
@@ -66,7 +66,7 @@ public class TaskService {
      * @param taskId
      */
     public void delete(Integer taskId) {
-        repo.deleteById(taskId);
+        taskRepository.deleteById(taskId);
     }
 
     /**
@@ -74,7 +74,7 @@ public class TaskService {
      * @param task
      */
     public void delete(Task task) {
-        repo.delete(task);
+        taskRepository.delete(task);
     }
 
 }

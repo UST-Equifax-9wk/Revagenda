@@ -1,5 +1,7 @@
 package com.revature.Revagenda.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Objects;
 
@@ -24,6 +26,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
+    @JsonBackReference
     private User user;
 
     @Column

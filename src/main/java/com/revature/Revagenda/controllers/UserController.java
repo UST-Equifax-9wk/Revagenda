@@ -1,6 +1,7 @@
 package com.revature.Revagenda.controllers;
 
 import com.revature.Revagenda.entities.User;
+import com.revature.Revagenda.exceptions.NoResultsException;
 import com.revature.Revagenda.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @RestController
-@RequestMapping(path = "/users")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     /**
      *
@@ -27,10 +27,17 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping
+    @PostMapping(path = "/users")
     User registerNewUser(@RequestBody User user) {
         return userService.saveOrUpdate(user);
     }
+
+
+    @GetMapping(path = "/users/{username}")
+    User getUserByUsername(@PathVariable String username) throws NoResultsException {
+        return userService.findByUsername(username);
+    }
+
 
 
 

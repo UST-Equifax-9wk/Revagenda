@@ -1,5 +1,6 @@
 package com.revature.Revagenda.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -28,6 +29,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @JsonManagedReference
     private Set<Task> tasks;
 
     public User() {
