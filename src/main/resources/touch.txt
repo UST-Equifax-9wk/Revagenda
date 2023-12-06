@@ -1,1 +1,2 @@
-This is where you should put application.properties
+This file exists so that git tracks this otherwise empty directory.
+This is where you should put application.properties file.
