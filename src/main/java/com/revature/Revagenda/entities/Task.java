@@ -24,22 +24,34 @@ public class Task {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
+    @Column
+    private boolean complete;
+
     public Task() {
     }
 
-    public Task(Integer taskId, String title, String description, String due, User user) {
+    public Task(String title, String description, String due, boolean complete) {
+        this.title = title;
+        this.description = description;
+        this.due = due;
+        this.complete = complete;
+    }
+
+    public Task(String title, String description, String due, User user, boolean complete) {
+        this.title = title;
+        this.description = description;
+        this.due = due;
+        this.user = user;
+        this.complete = complete;
+    }
+
+    public Task(Integer taskId, String title, String description, String due, User user, boolean complete) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.due = due;
         this.user = user;
-    }
-
-    public Task(String title, String description, String due, User user) {
-        this.title = title;
-        this.description = description;
-        this.due = due;
-        this.user = user;
+        this.complete = complete;
     }
 
     public Integer getTaskId() {
@@ -82,17 +94,26 @@ public class Task {
         this.user = user;
     }
 
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(taskId, task.taskId) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && Objects.equals(due, task.due) && Objects.equals(user, task.user);
+        return complete == task.complete && Objects.equals(taskId, task.taskId) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && Objects.equals(due, task.due) && Objects.equals(user, task.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, title, description, due, user);
+        return Objects.hash(taskId, title, description, due, complete);
     }
 
     @Override
@@ -102,7 +123,7 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", due='" + due + '\'' +
-                ", user=" + user +
+                ", complete=" + complete +
                 '}';
     }
 }

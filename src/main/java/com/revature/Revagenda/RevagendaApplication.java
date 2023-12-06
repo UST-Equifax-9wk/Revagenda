@@ -1,16 +1,10 @@
 package com.revature.Revagenda;
 
-import com.revature.Revagenda.entities.TestEntity;
-import com.revature.Revagenda.entities.User;
 import com.revature.Revagenda.exceptions.NoResultsException;
-import com.revature.Revagenda.repositories.TestRepository;
-import com.revature.Revagenda.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.List;
 
 @EnableTransactionManagement
 @SpringBootApplication(scanBasePackages = {
@@ -20,23 +14,37 @@ import java.util.List;
 		"com.revature.Revagenda.repositories"})
 public class RevagendaApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoResultsException {
 		ApplicationContext iocContainer = SpringApplication.run(RevagendaApplication.class, args);
+//
+//		UserService userService = iocContainer.getBean(UserService.class);
+//		TaskService taskService = iocContainer.getBean(TaskService.class);
+//		User kyle = new User("Kyle", "Plummer", "kplummer", "password");
+//		//userService.saveUser(kyle);
+//
+//		Task task = new Task("title", "desc", "due date", kyle);
+//		Set<Task> taskSet = new HashSet<>();
+//		taskSet.add(task);
+//		kyle.setTasks(taskSet);
+//
+//		//taskService.saveOrUpdate(taskSet);
+//
+//		userService.saveUser(kyle);
+//
+//		User retrievedUser = userService.findUserAndTasks("kplummer");
+//		System.out.println(retrievedUser);
+//		System.out.println(retrievedUser.getTasks());
 
-		UserService service = iocContainer.getBean(UserService.class);
-		service.saveUser(new User("Kyle", "Plummer", "kplummer", "password"));
-		service.saveUser(new User("Christopher", "Pratt", "cpratt", "knope2012"));
-		service.saveUser(new User("Rupert", "Grint", "rweasley", "avadavakadavra"));
-		service.saveUser(new User("Andrew", "Garfield", "spidey", "PassW0rd123!"));
 
-		List<User> gNames = null;
-		try {
-			gNames = service.findUsersByLastInitial('G');
-		} catch(NoResultsException e) {
-			//...
-			e.printStackTrace();
-		}
-		System.out.println(gNames);
+
+//		List<User> gNames = null;
+//		try {
+//			gNames = userService.findUsersByLastInitial('P');
+//		} catch(NoResultsException e) {
+//			//...
+//			e.printStackTrace();
+//		}
+//		System.out.println(gNames);
 
 		//TestRepository testRepo = iocContainer.getBean(TestRepository.class);
 		//testRepo.save(new TestEntity("testValue"));//can't auto-generate keys

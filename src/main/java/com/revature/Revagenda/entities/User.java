@@ -2,11 +2,12 @@ package com.revature.Revagenda.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
 
+
 @Entity(name = "users")//This class represents an Entity and the table these should be stored in will be called "users"
+@Table(indexes = {@Index(columnList = "username")})
 public class User {
     @Id
     @Column(name = "user_id")
@@ -25,7 +26,7 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private Set<Task> tasks;
 
     public User() {
@@ -125,7 +126,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", tasks=" + tasks +
                 '}';
     }
 }
