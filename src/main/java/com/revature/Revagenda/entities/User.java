@@ -1,11 +1,12 @@
 package com.revature.Revagenda.entities;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 import java.util.Set;
 
-
+/**
+ *
+ */
 @Entity(name = "users")//This class represents an Entity and the table these should be stored in will be called "users"
 @Table(indexes = {@Index(columnList = "username")})
 public class User {

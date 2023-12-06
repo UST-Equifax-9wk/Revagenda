@@ -1,9 +1,11 @@
 package com.revature.Revagenda.entities;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
+/**
+ *
+ */
 @Entity(name = "tasks")
 public class Task {
     @Id
