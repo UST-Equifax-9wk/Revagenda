@@ -3,6 +3,7 @@ package com.revature.Revagenda.services;
 import com.revature.Revagenda.entities.Task;
 import com.revature.Revagenda.entities.User;
 import com.revature.Revagenda.repositories.TaskRepository;
+import com.revature.Revagenda.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,22 +15,30 @@ import java.util.Set;
 @Service
 @Transactional(Transactional.TxType.REQUIRED)
 public class TaskService {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
     /**
      * Constructor
      * @param taskRepository - autowired TaskRepository bean dependency
      */
     @Autowired
-    public TaskService(TaskRepository taskRepository) {
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
     }
 
     /**
      *
      * @param task
      */
-    public Task saveOrUpdate(Task task) {
+    public Task save(Task task, String username) {
+        User user = userRepository.findByUsername(username).get();
+        task.setUser(user);
+        return taskRepository.save(task);
+    }
+
+    public Task update(Task task) {
         return taskRepository.save(task);
     }
 
@@ -37,7 +46,7 @@ public class TaskService {
      *
      * @param taskSet
      */
-    public void saveOrUpdate(Set<Task> taskSet) {
+    public void save(Set<Task> taskSet) {
         for(Task task : taskSet) {
             taskRepository.save(task);
         }

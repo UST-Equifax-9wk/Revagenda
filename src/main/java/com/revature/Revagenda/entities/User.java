@@ -2,6 +2,9 @@ package com.revature.Revagenda.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,6 +20,7 @@ public class User {
     private Integer userId;
 
     @Column(name = "first_name")
+    @Max(200)
     private String firstName;
 
     @Column(name = "last_name")
