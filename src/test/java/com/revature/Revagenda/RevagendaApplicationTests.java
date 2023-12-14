@@ -11,6 +11,10 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootTest
 class RevagendaApplicationTests {
+	// The three A's:
+	// ARRANGE
+	// ACT
+	// ASSERT
 
 	private ApplicationContext ac;
 

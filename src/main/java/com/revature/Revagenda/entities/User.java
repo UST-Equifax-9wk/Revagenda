@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  *
@@ -20,7 +21,6 @@ public class User {
     private Integer userId;
 
     @Column(name = "first_name")
-    @Max(200)
     private String firstName;
 
     @Column(name = "last_name")
@@ -46,6 +46,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.tasks = tasks;
+    }
+
+    public User(Integer userId, String firstName, String lastName, String username, String password) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
     }
 
     public User(String firstName, String lastName, String username, String password, Set<Task> tasks) {

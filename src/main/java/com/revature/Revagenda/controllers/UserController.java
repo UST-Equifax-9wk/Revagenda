@@ -29,6 +29,7 @@ public class UserController {
      * @param user
      * @return
      */
+    @CrossOrigin
     @PostMapping(path = "/users")
     @ResponseStatus(HttpStatus.OK)
     User registerNewUser(@RequestBody User user) {
@@ -52,34 +53,35 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/users/{userId}")
+    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     void deleteUser(@PathVariable Integer userId) {
         //TODO: Finish this method
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<String> internalErrorHandler(NoResultsException e) {
-        ResponseEntity<String> resp = new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        return resp;
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public ResponseEntity<String> internalErrorHandler(NoResultsException e) {
+//        ResponseEntity<String> resp = new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+//        return resp;
+//    }
 
 
-    @ExceptionHandler(NoResultsException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String noResultsExceptionHandler(NoResultsException e) {
-        return "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "    <title>Error Page</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>Error, no results found!</h1>\n" +
-                "    <img src=\"https://upload.wikimedia.org/wikipedia/commons/f/f7/Generic_error_message.png\">\n" +
-                "</body>\n" +
-                "</html>";
-    }
+//    @ExceptionHandler(NoResultsException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public String noResultsExceptionHandler(NoResultsException e) {
+//        return "<!DOCTYPE html>\n" +
+//                "<html lang=\"en\">\n" +
+//                "<head>\n" +
+//                "    <meta charset=\"UTF-8\">\n" +
+//                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+//                "    <title>Error Page</title>\n" +
+//                "</head>\n" +
+//                "<body>\n" +
+//                "    <h1>Error, no results found!</h1>\n" +
+//                "    <img src=\"https://upload.wikimedia.org/wikipedia/commons/f/f7/Generic_error_message.png\">\n" +
+//                "</body>\n" +
+//                "</html>";
+//    }
 
 
 
