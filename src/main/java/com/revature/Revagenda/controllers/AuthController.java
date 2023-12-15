@@ -40,16 +40,17 @@ public class AuthController {
         }
     }
 
-    @PostMapping(path = "/cookie-test")
+    @PostMapping(path = "/cookie-test/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public String testCookieGenerate(HttpServletResponse response) {
+    public String testCookieGenerate(HttpServletResponse response, @PathVariable String username) {
         //pretend we have completed authenticating a user here, we got a username and pass and they matched...
-        String username = "kplummer";
         Cookie auth = new Cookie("username", username);
         response.addCookie(auth);
         Cookie hash = new Cookie("hash", authService.hash(username));
         response.addCookie(hash);
         return "Cookies added";
+        //hash=$2a$12$UXZRHIqDxtESSD1HwgK2pOYOxzTIi8poq96RkXpehgsWKkAkYRPHa; Path=/; kplummer??
+        //hash=$2a$12$BIwc2lVR0ACcG6CKq2DG9uat57ThDpbW6yGG10uJbJXJZXPl0a/Nm; Path=/cookie-test; //kplummer
     }
 
 
