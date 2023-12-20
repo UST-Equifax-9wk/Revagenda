@@ -1,0 +1,15 @@
+<h1>Hello {{firstName}}</h1>
+
+<label>First name:</label>
+<input type="text" id="firstName" [(ngModel)]="firstName">
+<br>
+<label>Last name:</label>
+<input type="text" id="lastName" [(ngModel)]="lastName">
+<br>
+<label>Username:</label>
+<input type="text" id="username" [(ngModel)]="username">
+<br>
+<label>Password:</label>
+<input type="text" id="password" [(ngModel)]="password">
+<br>
+<button *ngIf="firstName != '' && lastName != '' && username != '' && password != ''">submit!</button>

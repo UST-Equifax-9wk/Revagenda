@@ -1,0 +1,28 @@
+2023-12-19 16:46:16.580 INFO [background-preinit] [org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21)] - HV000001: Hibernate Validator 8.0.1.Final
+2023-12-19 16:46:16.653 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:50)] - Starting RevagendaApplication using Java 21.0.1 with PID 10236 (C:\Training\221127-UST-Equifax\Revagenda\revagenda-server\target\classes started by KylePlummer in C:\Training\221127-UST-Equifax\Revagenda\revagenda-server)
+2023-12-19 16:46:16.659 INFO [main] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:653)] - No active profile set, falling back to 1 default profile: "default"
+2023-12-19 16:46:17.820 INFO [main] [org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:139)] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-19 16:46:17.941 INFO [main] [org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:208)] - Finished Spring Data repository scanning in 104 ms. Found 2 JPA repository interfaces.
+2023-12-19 16:46:18.831 INFO [main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108)] - Tomcat initialized with port 8080 (http)
+2023-12-19 16:46:18.846 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2023-12-19 16:46:18.849 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2023-12-19 16:46:18.850 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2023-12-19 16:46:18.955 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2023-12-19 16:46:18.957 INFO [main] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 2223 ms
+2023-12-19 16:46:19.262 INFO [main] [org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation(LogHelper.java:31)] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-19 16:46:19.381 INFO [main] [org.hibernate.Version.logVersion(Version.java:44)] - HHH000412: Hibernate ORM core version 6.3.1.Final
+2023-12-19 16:46:19.453 INFO [main] [org.hibernate.cache.internal.RegionFactoryInitiator.initiateService(RegionFactoryInitiator.java:50)] - HHH000026: Second-level cache disabled
+2023-12-19 16:46:19.992 INFO [main] [org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo.addTransformer(SpringPersistenceUnitInfo.java:87)] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-19 16:46:20.121 INFO [main] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110)] - HikariPool-1 - Starting...
+2023-12-19 16:46:21.032 INFO [main] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:565)] - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1dca62c2
+2023-12-19 16:46:21.034 INFO [main] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123)] - HikariPool-1 - Start completed.
+2023-12-19 16:46:22.800 INFO [main] [org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator.initiateService(JtaPlatformInitiator.java:58)] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-19 16:46:23.337 INFO [main] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:437)] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-19 16:46:23.963 WARN [main] [org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(JpaBaseConfiguration.java:232)] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-19 16:46:24.510 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2023-12-19 16:46:24.553 INFO [main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:221)] - Tomcat started on port 8080 (http) with context path ''
+2023-12-19 16:46:24.563 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:56)] - Started RevagendaApplication in 8.523 seconds (process running for 10.133)
+2023-12-19 16:46:25.155 FATAL [main] [com.revature.Revagenda.RevagendaApplication.main(RevagendaApplication.java:27)] - Hash test success
+2023-12-19 16:46:29.632 INFO [SpringApplicationShutdownHook] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.destroy(AbstractEntityManagerFactoryBean.java:650)] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-19 16:46:29.635 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350)] - HikariPool-1 - Shutdown initiated...
+2023-12-19 16:46:30.137 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352)] - HikariPool-1 - Shutdown completed.
