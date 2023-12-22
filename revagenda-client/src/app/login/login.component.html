@@ -1,0 +1,7 @@
+<label>Username:</label>
+<input type="text" id="username" [(ngModel)]="username">
+<br>
+<label>Password:</label>
+<input type="text" id="password" [(ngModel)]="password">
+<br>
+<button (click)="submitLogin()" *ngIf="username != '' && password != ''">submit!</button>

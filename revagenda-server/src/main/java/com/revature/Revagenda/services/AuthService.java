@@ -11,6 +11,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
     private UserService userService;
@@ -34,8 +36,12 @@ public class AuthService {
     }
 
     public boolean authenticate(Auth auth) {
-        Auth candidate = this.authRepository.findByUsername(auth.getUsername());
-        return this.checkHash(auth.getPassword(), candidate.getPassword());
+        Optional<Auth> candidate = this.authRepository.findByUsername(auth.getUsername());
+        if(candidate.isPresent()) {
+            return this.checkHash(auth.getPassword(), candidate.get().getPassword());
+        } else {
+            return false;
+        }
     }
 
     public String hash(String text) {

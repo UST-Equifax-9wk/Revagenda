@@ -12,4 +12,4 @@
 <label>Password:</label>
 <input type="text" id="password" [(ngModel)]="password">
 <br>
-<button *ngIf="firstName != '' && lastName != '' && username != '' && password != ''">submit!</button>
+<button (click)="submitRegistration()" *ngIf="firstName != '' && lastName != '' && username != '' && password != ''">submit!</button>

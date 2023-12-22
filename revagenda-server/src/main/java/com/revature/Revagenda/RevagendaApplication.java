@@ -22,23 +22,6 @@ public class RevagendaApplication {
 	private static Logger logger = LogManager.getLogger("fileLogger");
 	public static void main(String[] args) throws NoResultsException {
 		ApplicationContext iocContainer = SpringApplication.run(RevagendaApplication.class, args);
-
-		User user = new User();
-		user.setFirstName("kyle");
-		user.setLastName("Plummer");
-		user.setUsername("kplummer");
-
-		Auth auth = new Auth();
-		auth.setUsername("kplummer");
-		auth.setPassword("password");
-
-		NewUserDto dto = new NewUserDto(user, auth);
-		System.out.println(dto);
-
-
-
-
-
 	}
 
 }

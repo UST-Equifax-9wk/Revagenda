@@ -16,6 +16,7 @@ import java.util.Set;
  * such as saving or retrieving tasks.
  */
 @RestController
+@CrossOrigin
 public class TaskController {
     private final TaskService taskService;
     private final UserService userService;

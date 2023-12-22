@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @RestController
+@CrossOrigin
 public class UserController {
     private final UserService userService;
 
@@ -29,7 +30,6 @@ public class UserController {
      * @param user
      * @return
      */
-    @CrossOrigin
     @PostMapping(path = "/users")
     @ResponseStatus(HttpStatus.OK)
     User registerNewUser(@RequestBody User user) {
