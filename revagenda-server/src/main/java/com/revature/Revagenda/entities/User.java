@@ -1,13 +1,11 @@
 package com.revature.Revagenda.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  *
@@ -29,46 +27,31 @@ public class User {
     @Column(name = "username", unique = true)
     private String username;
 
-    @Column
-    private String password;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     @JsonManagedReference
     private Set<Task> tasks;
 
+    public User(String firstName, String lastName, String username) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+    }
+
+    public User(String firstName, String lastName, String username, Set<Task> tasks) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.tasks = tasks;
+    }
+
+    public User(Integer userId, String firstName, String lastName, String username) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+    }
+
     public User() {
-    }
-
-    public User(Integer userId, String firstName, String lastName, String username, String password, Set<Task> tasks) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.tasks = tasks;
-    }
-
-    public User(Integer userId, String firstName, String lastName, String username, String password) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-    }
-
-    public User(String firstName, String lastName, String username, String password, Set<Task> tasks) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.tasks = tasks;
-    }
-
-    public User(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
     }
 
     public Integer getUserId() {
@@ -103,14 +86,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Set<Task> getTasks() {
         return tasks;
     }
@@ -125,12 +100,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(tasks, user.tasks);
+        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(tasks, user.tasks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, username, password, tasks);
+        return Objects.hash(userId, firstName, lastName, username, tasks);
     }
 
     @Override
@@ -140,7 +115,6 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -25,7 +25,7 @@ public class UserControllerTest {
     void test() throws Exception {
         //arrange
         Integer userId = 1;
-        User testUser = new User(userId, "test", "user", "testuser", "password");
+        User testUser = new User(userId, "test", "user", "testuser");
         when(userService.findByUserId(userId)).thenReturn(testUser);
 
         //act & assert

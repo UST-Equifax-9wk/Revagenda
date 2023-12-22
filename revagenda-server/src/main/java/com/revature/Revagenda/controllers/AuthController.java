@@ -1,6 +1,11 @@
 package com.revature.Revagenda.controllers;
 
-import com.revature.Revagenda.dto.Auth;
+import com.revature.Revagenda.dto.NewUserDto;
+import com.revature.Revagenda.entities.Auth;
+import com.revature.Revagenda.entities.User;
+import com.revature.Revagenda.exceptions.AccessDeniedException;
+import com.revature.Revagenda.exceptions.NoResultsException;
+import com.revature.Revagenda.exceptions.UsernameUnavailableException;
 import com.revature.Revagenda.services.AuthService;
 import com.revature.Revagenda.services.UserService;
 import jakarta.servlet.http.Cookie;
@@ -20,12 +25,24 @@ public class AuthController {
         this.authService = authService;
     }
 
-    //We should send back success or failure.
-    //we should send back some sort of auth token - cookie
+    @PostMapping(path = "/register")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User registerUser(@RequestBody NewUserDto newUserDto, HttpServletResponse response) throws UsernameUnavailableException{
+        return authService.registerUser(newUserDto);
+    }
 
-
-    public void authenticate(@RequestBody Auth auth) {
-        //TODO: finish this method
+    @PostMapping(path = "/login")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User authenticate(@RequestBody Auth auth, HttpServletResponse response) throws AccessDeniedException {
+        if(this.authService.authenticate(auth)){
+            try {
+                return userService.findByUsername(auth.getUsername());
+            } catch (NoResultsException e) {
+                throw new AccessDeniedException("Access denied");
+            }
+        } else {
+            throw new AccessDeniedException("Access denied");
+        }
     }
 
     @GetMapping(path = "/cookie-test")
@@ -49,8 +66,18 @@ public class AuthController {
         Cookie hash = new Cookie("hash", authService.hash(username));
         response.addCookie(hash);
         return "Cookies added";
-        //hash=$2a$12$UXZRHIqDxtESSD1HwgK2pOYOxzTIi8poq96RkXpehgsWKkAkYRPHa; Path=/; kplummer??
-        //hash=$2a$12$BIwc2lVR0ACcG6CKq2DG9uat57ThDpbW6yGG10uJbJXJZXPl0a/Nm; Path=/cookie-test; //kplummer
+    }
+
+    @ExceptionHandler(UsernameUnavailableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String usernameUnavailableExceptionHandler() {
+        return "This username is unavailable";
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String accessDeniedExceptionHandler() {
+        return "Access denied";
     }
 
 
