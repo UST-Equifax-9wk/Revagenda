@@ -18,7 +18,7 @@ public class UserRepositoryTest {
 
     @Test
     void test() {
-        User testUser = new User(1, "test", "user", "testuser", "password");
+        User testUser = new User(1, "test", "user", "testuser");
         sut.save(testUser);
         Assertions.assertEquals(entityManager.find(User.class, testUser.getUserId()), testUser);
     }

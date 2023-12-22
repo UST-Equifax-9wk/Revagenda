@@ -62,7 +62,7 @@ public class UserServiceTest {
         String testLastName = "user";
         String testUsername = "testUser";
         String testPassword = "password";
-        User testUser = new User(testUserId, testFirstName, testLastName, testUsername, testPassword);
+        User testUser = new User(testUserId, testFirstName, testLastName, testUsername);
         when(mockUserRepository.findByUsername(testUsername)).thenReturn(Optional.of(testUser));
 
         //act

@@ -1,6 +1,10 @@
 package com.revature.Revagenda.controllers;
 
-import com.revature.Revagenda.dto.Auth;
+import com.revature.Revagenda.dto.NewUserDto;
+import com.revature.Revagenda.entities.Auth;
+import com.revature.Revagenda.entities.User;
+import com.revature.Revagenda.exceptions.NoResultsException;
+import com.revature.Revagenda.exceptions.UsernameUnavailableException;
 import com.revature.Revagenda.services.AuthService;
 import com.revature.Revagenda.services.UserService;
 import jakarta.servlet.http.Cookie;
@@ -20,12 +24,30 @@ public class AuthController {
         this.authService = authService;
     }
 
-    //We should send back success or failure.
-    //we should send back some sort of auth token - cookie
+    @PostMapping(path = "/register")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User registerUser(@RequestBody NewUserDto newUserDto, HttpServletResponse response) {
+        try {
+            return authService.registerUser(newUserDto);
+        } catch (UsernameUnavailableException e) {
+            response.setStatus(HttpStatus.CONFLICT.value());
+            return null;
+        }
+    }
 
-
-    public void authenticate(@RequestBody Auth auth) {
-        //TODO: finish this method
+    @PostMapping(path = "/login")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User authenticate(@RequestBody Auth auth, HttpServletResponse response) {
+        if(this.authService.authenticate(auth)){
+            try {
+                return userService.findByUsername(auth.getUsername());
+            } catch (NoResultsException e) {
+                throw new RuntimeException("Auth success but user not found? " + e);
+            }
+        } else {
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return null;
+        }
     }
 
     @GetMapping(path = "/cookie-test")
@@ -49,8 +71,6 @@ public class AuthController {
         Cookie hash = new Cookie("hash", authService.hash(username));
         response.addCookie(hash);
         return "Cookies added";
-        //hash=$2a$12$UXZRHIqDxtESSD1HwgK2pOYOxzTIi8poq96RkXpehgsWKkAkYRPHa; Path=/; kplummer??
-        //hash=$2a$12$BIwc2lVR0ACcG6CKq2DG9uat57ThDpbW6yGG10uJbJXJZXPl0a/Nm; Path=/cookie-test; //kplummer
     }
 
 

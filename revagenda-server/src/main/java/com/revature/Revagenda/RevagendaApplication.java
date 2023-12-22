@@ -20,14 +20,14 @@ public class RevagendaApplication {
 	public static void main(String[] args) throws NoResultsException {
 		ApplicationContext iocContainer = SpringApplication.run(RevagendaApplication.class, args);
 
-		String testString = "testString";
-		AuthService authService = iocContainer.getBean(AuthService.class);
-		String hash = authService.hash(testString);
-		if(authService.checkHash(testString, hash)) {
-			logger.fatal("Hash test success");
-		} else {
-			logger.fatal("Bad hash oh no!");
-		}
+//		String testString = "testString";
+//		AuthService authService = iocContainer.getBean(AuthService.class);
+//		String hash = authService.hash(testString);
+//		if(authService.checkHash(testString, hash)) {
+//			logger.fatal("Hash test success");
+//		} else {
+//			logger.fatal("Bad hash oh no!");
+//		}
 
 
 

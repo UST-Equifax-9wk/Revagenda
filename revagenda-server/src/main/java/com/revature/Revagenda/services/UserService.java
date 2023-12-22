@@ -64,7 +64,7 @@ public class UserService {
      * @return
      * @throws NoResultsException
      */
-    public User findByUserId(Integer id) throws NoResultsException {
+    public User findByUserId(Integer id) throws NoResultsException {//TODO: need to re-think these NoResultsExceptions...
         Optional<User> result = userRepository.findById(id);
         if (result.isEmpty()) {
             throw new NoResultsException("No users found with ID: " + id);
@@ -95,6 +95,16 @@ public class UserService {
      */
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    /**
+     * This method is used to check if the username already exists in the database
+     * @param username the username string to check for presence in the database
+     * @return true if the username is already found in database
+     */
+    public boolean checkUsername(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        return userOptional.isPresent();
     }
 
 
