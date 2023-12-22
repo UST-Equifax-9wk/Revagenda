@@ -3,6 +3,7 @@ package com.revature.Revagenda.controllers;
 import com.revature.Revagenda.dto.NewUserDto;
 import com.revature.Revagenda.entities.Auth;
 import com.revature.Revagenda.entities.User;
+import com.revature.Revagenda.exceptions.AccessDeniedException;
 import com.revature.Revagenda.exceptions.NoResultsException;
 import com.revature.Revagenda.exceptions.UsernameUnavailableException;
 import com.revature.Revagenda.services.AuthService;
@@ -26,27 +27,21 @@ public class AuthController {
 
     @PostMapping(path = "/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User registerUser(@RequestBody NewUserDto newUserDto, HttpServletResponse response) {
-        try {
-            return authService.registerUser(newUserDto);
-        } catch (UsernameUnavailableException e) {
-            response.setStatus(HttpStatus.CONFLICT.value());
-            return null;
-        }
+    public User registerUser(@RequestBody NewUserDto newUserDto, HttpServletResponse response) throws UsernameUnavailableException{
+        return authService.registerUser(newUserDto);
     }
 
     @PostMapping(path = "/login")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User authenticate(@RequestBody Auth auth, HttpServletResponse response) {
+    public User authenticate(@RequestBody Auth auth, HttpServletResponse response) throws AccessDeniedException {
         if(this.authService.authenticate(auth)){
             try {
                 return userService.findByUsername(auth.getUsername());
             } catch (NoResultsException e) {
-                throw new RuntimeException("Auth success but user not found? " + e);
+                throw new AccessDeniedException("Access denied");
             }
         } else {
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
     }
 
@@ -71,6 +66,18 @@ public class AuthController {
         Cookie hash = new Cookie("hash", authService.hash(username));
         response.addCookie(hash);
         return "Cookies added";
+    }
+
+    @ExceptionHandler(UsernameUnavailableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String usernameUnavailableExceptionHandler() {
+        return "This username is unavailable";
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String accessDeniedExceptionHandler() {
+        return "Access denied";
     }
 
 

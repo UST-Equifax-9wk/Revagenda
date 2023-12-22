@@ -1,5 +1,8 @@
 package com.revature.Revagenda;
 
+import com.revature.Revagenda.dto.NewUserDto;
+import com.revature.Revagenda.entities.Auth;
+import com.revature.Revagenda.entities.User;
 import com.revature.Revagenda.exceptions.NoResultsException;
 import com.revature.Revagenda.services.AuthService;
 import org.apache.logging.log4j.LogManager;
@@ -20,14 +23,19 @@ public class RevagendaApplication {
 	public static void main(String[] args) throws NoResultsException {
 		ApplicationContext iocContainer = SpringApplication.run(RevagendaApplication.class, args);
 
-//		String testString = "testString";
-//		AuthService authService = iocContainer.getBean(AuthService.class);
-//		String hash = authService.hash(testString);
-//		if(authService.checkHash(testString, hash)) {
-//			logger.fatal("Hash test success");
-//		} else {
-//			logger.fatal("Bad hash oh no!");
-//		}
+		User user = new User();
+		user.setFirstName("kyle");
+		user.setLastName("Plummer");
+		user.setUsername("kplummer");
+
+		Auth auth = new Auth();
+		auth.setUsername("kplummer");
+		auth.setPassword("password");
+
+		NewUserDto dto = new NewUserDto(user, auth);
+		System.out.println(dto);
+
+
 
 
 

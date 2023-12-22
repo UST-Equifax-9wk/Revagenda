@@ -34,7 +34,7 @@ public class AuthService {
     }
 
     public boolean authenticate(Auth auth) {
-        Auth candidate = this.authRepository.findAuthByAuthUsername(auth.getUsername());
+        Auth candidate = this.authRepository.findByUsername(auth.getUsername());
         return this.checkHash(auth.getPassword(), candidate.getPassword());
     }
 

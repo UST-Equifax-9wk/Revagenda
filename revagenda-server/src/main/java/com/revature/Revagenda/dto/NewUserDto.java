@@ -30,4 +30,12 @@ public class NewUserDto {
     public void setAuth(Auth auth) {
         this.auth = auth;
     }
+
+    @Override
+    public String toString() {
+        return "NewUserDto{" +
+                "user=" + user +
+                ", auth=" + auth +
+                '}';
+    }
 }
