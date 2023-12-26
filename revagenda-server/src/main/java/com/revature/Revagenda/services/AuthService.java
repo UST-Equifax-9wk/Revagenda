@@ -9,11 +9,12 @@ import com.revature.Revagenda.repositories.AuthRepository;
 import jakarta.transaction.Transactional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
-@Service
+@Service("myAuthService")
 public class AuthService {
     private UserService userService;
     private AuthRepository authRepository;

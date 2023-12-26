@@ -22,6 +22,10 @@ export class LoginComponent {
     this.remoteService = remoteService;
   }
 
+  cookieLogin() {
+    
+  }
+
   submitLogin() {
     this.remoteService.login({username: this.username, password: this.password})
     .subscribe({
