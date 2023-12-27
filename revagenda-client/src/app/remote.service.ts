@@ -23,26 +23,36 @@ export class RemoteService {
     return this.httpClient.post(this.baseUrl + "/register", JSON.stringify(newUserDto), /*this.httpOptions*/
     {
       observe: 'response', 
+      withCredentials: true ,
       headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })}
     )
   }
 
-  // test(newUserDto: NewUserDto): Observable<Object> {
-  //   return this.httpClient.post(this.baseUrl + "/register", JSON.stringify(newUserDto), this.httpOptions
-  //   )
-  // }
-
-
   login(authDto: AuthDto): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.baseUrl + "/login", JSON.stringify(authDto),
-    {observe: 'response', headers: new HttpHeaders({
+    return this.httpClient.post(this.baseUrl + "/login", JSON.stringify(authDto), {
+      observe: 'response', 
+      withCredentials: true,
+      headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })}
     )
   }
+  
+  cookieTest(): Observable<HttpResponse<Object>> {
+    return this.httpClient.get(this.baseUrl + "/cookie-test", {
+      observe: 'response',
+      withCredentials: true ,
+      headers: new HttpHeaders()
+    })
+  }
+
+
+
 }
+
+
 
 export interface NewUserDto {
   user: UserDto

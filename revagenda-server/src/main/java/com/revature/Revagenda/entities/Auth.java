@@ -3,7 +3,7 @@ package com.revature.Revagenda.entities;
 import jakarta.persistence.*;
 
 @Entity(name = "passwords")
-@Table(indexes = {@Index(columnList = "username")})
+@Table(/*indexes = {@Index(columnList = "username")}*/)
 public class Auth {
     @Id
     @Column(name = "username")

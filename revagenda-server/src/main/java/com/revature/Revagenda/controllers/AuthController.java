@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class AuthController {
     private final UserService userService;
     private final AuthService authService;
@@ -37,6 +37,10 @@ public class AuthController {
     public User authenticate(@RequestBody Auth auth, HttpServletResponse response) throws AccessDeniedException {
         if(this.authService.authenticate(auth)){
             try {
+                Cookie cookie = new Cookie("username", auth.getUsername());
+                cookie.setMaxAge(60*60*24*7);
+                cookie.setPath("/");
+                response.addCookie(cookie);
                 return userService.findByUsername(auth.getUsername());
             } catch (NoResultsException e) {
                 throw new AccessDeniedException("Access denied");
@@ -48,25 +52,9 @@ public class AuthController {
 
     @GetMapping(path = "/cookie-test")
     @ResponseStatus(HttpStatus.OK)
-    public String testCookie(@CookieValue(name = "username") String username, @CookieValue(name = "hash") String hash) {//get cookie from request
-        if(authService.checkHash(username, hash)) {
-            System.out.println("Auth cookie verified!");
-            return "Auth cookie verified!";
-        } else {
-            System.out.println("Failed to authenticate");
-            return "Failed to authenticate";
-        }
-    }
-
-    @PostMapping(path = "/cookie-test/{username}")
-    @ResponseStatus(HttpStatus.OK)
-    public String testCookieGenerate(HttpServletResponse response, @PathVariable String username) {
-        //pretend we have completed authenticating a user here, we got a username and pass and they matched...
-        Cookie auth = new Cookie("username", username);
-        response.addCookie(auth);
-        Cookie hash = new Cookie("hash", authService.hash(username));
-        response.addCookie(hash);
-        return "Cookies added";
+    public User testCookie(@CookieValue(name = "username") String username) {//get cookie from request
+        System.out.println("cookie username: " + username);
+        return new User();
     }
 
     @ExceptionHandler(UsernameUnavailableException.class)
