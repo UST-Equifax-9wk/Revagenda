@@ -16,7 +16,8 @@ import java.util.Set;
  * such as saving or retrieving tasks.
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+//@CrossOrigin(origins = "https://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "https://revagenda.web.app", allowCredentials = "true")
 public class TaskController {
     private final TaskService taskService;
     private final UserService userService;
