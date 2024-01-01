@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
+import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class RemoteService {
 
   constructor(httpClient: HttpClient) {
     this.httpClient = httpClient;
-    this.baseUrl = "http://localhost:8080"
+    this.baseUrl = environment.apiUrl;
   }
 
   registerNewUser(newUserDto: NewUserDto): Observable<HttpResponse<Object>> {

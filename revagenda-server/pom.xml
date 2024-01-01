@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.revature</groupId>
 	<artifactId>Revagenda</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
+	<packaging>jar</packaging>
 	<name>Revagenda</name>
 	<description>Revagenda demo project</description>
 	<properties>

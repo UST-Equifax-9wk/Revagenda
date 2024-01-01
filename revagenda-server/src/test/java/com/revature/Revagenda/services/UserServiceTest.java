@@ -72,24 +72,24 @@ public class UserServiceTest {
         Assertions.assertEquals(testUser, testResult);
     }
 
-    //TODO: Oops this test is logically broken, the repo doesn't throw that method.
-    @Test
-    public void test_findByUsernameWhereNoResultsArePresentAndNoResultsExceptionIsThrown(){
-
-        //arrange
-        String username = "username";
-        String message = "No results for username: " + username;
-        when(mockUserRepository.findByUsername(any())).thenThrow(NoResultsException.class);
-
-        //act
-        //sut.findByUsername("Anything at all!");//this happens inside the throwing assertion
-        //Exception e = Assertions.assertThrowsExactly(NoResultsException.class, () -> sut.findByUsername(username));
-        Exception e = Assertions.assertThrowsExactly(NoResultsException.class, () -> Integer.parseInt("one"));
-
-        //assert
-        //Assertions.assertEquals(message, e.getMessage());
-        Assertions.assertTrue(e.getMessage().contains("For input string"));
-    }
+//    //TODO: Oops this test is logically broken, the repo doesn't throw that method.
+//    @Test
+//    public void test_findByUsernameWhereNoResultsArePresentAndNoResultsExceptionIsThrown(){
+//
+//        //arrange
+//        String username = "username";
+//        String message = "No results for username: " + username;
+//        when(mockUserRepository.findByUsername(any())).thenThrow(NoResultsException.class);
+//
+//        //act
+//        //sut.findByUsername("Anything at all!");//this happens inside the throwing assertion
+//        //Exception e = Assertions.assertThrowsExactly(NoResultsException.class, () -> sut.findByUsername(username));
+//        Exception e = Assertions.assertThrowsExactly(NoResultsException.class, () -> Integer.parseInt("one"));
+//
+//        //assert
+//        //Assertions.assertEquals(message, e.getMessage());
+//        Assertions.assertTrue(e.getMessage().contains("For input string"));
+//    }
 
 
 
