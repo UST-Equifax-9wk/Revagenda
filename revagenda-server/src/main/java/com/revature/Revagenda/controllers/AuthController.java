@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "https://localhost:4200", allowCredentials = "true")
 public class AuthController {
     private final UserService userService;
     private final AuthService authService;
